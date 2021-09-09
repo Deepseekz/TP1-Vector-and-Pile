@@ -3,6 +3,10 @@ import java.util.Arrays;
 /** * La classe Vector implémente un tableau d'entiers * de taille dynamique. Les éléments du vecteur sont stockés dans un tableau. * La taille de ce tableau est au minimum doublée à chaque fois qu'il est * nécessaire de le faire grossir. */
 public class Vector {
 
+    public int[] getElements() {
+        return elements;
+    }
+
     /**
      * Tableau permettant de stocker les éléments du vecteur.
      * Seuls les size premiers éléments font partie du vecteur.
@@ -41,14 +45,22 @@ public class Vector {
      */
     public void ensureCapacity(int minCapacity) {
         int oldCapacity = elements.length;
-        if (oldCapacity >= minCapacity) return;
+        if (oldCapacity >= minCapacity)
+            return;
         int newCapacity = Math.max(oldCapacity * 2, minCapacity);
         elements = Arrays.copyOf(elements, newCapacity);
     }
 
     public void resize(int newSize) {
         ensureCapacity(newSize);
+        resetValuesInRange(newSize, size);
         this.size = newSize;
+    }
+
+    public void resetValuesInRange (int startIndex, int endIndexExcluded) {
+        for (int k = startIndex ; k < endIndexExcluded; k++) {
+            this.elements [k] = 0;
+        }
     }
 
     /**
@@ -56,13 +68,34 @@ public class Vector {
      *
      * @return Capacité du vecteur.
      */
-    public int capacity() {
+    public int capacity()
+    {
         return elements.length;
     }
 
-    public int size() { return 0; }
-    public boolean isEmpty() { return false; }
-    public void add(int element) { }
-    public void set(int index, int element) {  }
-    public int get(int index) { return 0; }
+    public int size()
+    {
+        return size;
+    }
+    public boolean isEmpty()
+    {
+        return this.elements[0] == 0;
+    }
+
+    public void add(int element)
+    {
+        if (this.size + 1 > this.elements.length)
+            ensureCapacity(this.size + 1);
+
+        this.elements[this.size] = element;
+        size += 1;
+    }
+    public void set(int index, int element)
+    {
+        this.elements[index] = element;
+    }
+    public int get(int index)
+    {
+        return this.elements[index];
+    }
 }
