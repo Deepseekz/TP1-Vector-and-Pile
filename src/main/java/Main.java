@@ -4,6 +4,7 @@ public class Main {
 
     public static void main(String[] args)
     {
+        /*
         Random _random = new Random();
         Vector _vector = new Vector();
 
@@ -18,6 +19,15 @@ public class Main {
         _verbose.add(new Card(0 ,0));
         _verbose.add(2);
         _verbose.set(1, 3);
-        Object object = _verbose.get(1);
+        Object object = _verbose.get(1);*/
+
+        int indexMin = -3;
+        int indexMax = 1;
+        RangeArray squares = new RangeArray(indexMin, indexMax);
+        for (int index =  squares.getIndexMin() ; index <= squares.getIndexMax() ; index++)
+            squares.set(index, index*index);
+        for (int index =  squares.getIndexMin() ; index <= squares.getIndexMax() ; index++)
+            System.out.println(index + " -> " + squares.get(index));
+        System.out.println(squares.rangeSize());
     }
 }
