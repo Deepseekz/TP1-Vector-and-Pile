@@ -17,7 +17,7 @@ public class Stack {
         this.vector.add(value);
     }
 
-    public int peek()
+    public Object peek()
     {
         return this.vector.getElements()[this.vector.size()-1];
     }
@@ -35,5 +35,12 @@ public class Stack {
     public boolean isEmpty()
     {
         return this.vector.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        return "Stack{" +
+                "vector=" + vector +
+                '}';
     }
 }

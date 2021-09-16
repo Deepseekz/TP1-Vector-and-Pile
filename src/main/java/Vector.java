@@ -3,7 +3,7 @@ import java.util.Arrays;
 /** * La classe Vector implémente un tableau d'entiers * de taille dynamique. Les éléments du vecteur sont stockés dans un tableau. * La taille de ce tableau est au minimum doublée à chaque fois qu'il est * nécessaire de le faire grossir. */
 public class Vector {
 
-    public int[] getElements() {
+    public Object[] getElements() {
         return elements;
     }
 
@@ -14,7 +14,7 @@ public class Vector {
      * au nombre d'éléments maximum que le vecteur peut contenir sans
      * avoir besoin d'allouer un nouveau tableau.
      */
-    private int[] elements;
+    private Object[] elements;
 
     /**
      * Nombre d'éléments présents dans le vecteur.
@@ -27,7 +27,7 @@ public class Vector {
      * @param initialCapacity Capacité initiale du vecteur
      */
     public Vector(int initialCapacity) {
-        elements = new int[initialCapacity];
+        elements = new Object[initialCapacity];
         size = 0;
     }
 
@@ -59,7 +59,7 @@ public class Vector {
 
     public void resetValuesInRange (int startIndex, int endIndexExcluded) {
         for (int k = startIndex ; k < endIndexExcluded; k++) {
-            this.elements [k] = 0;
+            this.elements [k] = null;
         }
     }
 
@@ -79,10 +79,10 @@ public class Vector {
     }
     public boolean isEmpty()
     {
-        return this.elements[0] == 0;
+        return this.elements[0] == null;
     }
 
-    public void add(int element)
+    public void add(Object element)
     {
         if (this.size + 1 > this.elements.length)
             ensureCapacity(this.size + 1);
@@ -90,12 +90,20 @@ public class Vector {
         this.elements[this.size] = element;
         size += 1;
     }
-    public void set(int index, int element)
+    public void set(int index, Object element)
     {
         this.elements[index] = element;
     }
-    public int get(int index)
+    public Object get(int index)
     {
         return this.elements[index];
+    }
+
+    @Override
+    public String toString() {
+        return "Vector{" +
+                "elements=" + Arrays.toString(elements) +
+                ", size=" + size +
+                '}';
     }
 }

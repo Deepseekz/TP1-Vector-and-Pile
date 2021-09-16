@@ -1,7 +1,7 @@
 public class Card
 {
-    private int _suit;
-    private int _rank;
+    private final int _suit;
+    private final int _rank;
 
     public Card(int suit, int rank)
     {
@@ -10,47 +10,48 @@ public class Card
     }
 
     private enum CardsColor {
-        CLUB(0,"Clubs"),
-        DIAMOND(1,"Diamonds"),
-        HEART(2,"Hearts"),
-        SPADE(3,"Spades");
+        CLUB("Clubs"),
+        DIAMOND("Diamonds"),
+        HEART("Hearts"),
+        SPADE("Spades");
 
-        private int _value;
-        private String _color;
+        private final String _color;
 
-        private CardsColor(int value, String color) {
-            _value = value;
+        CardsColor(String color) {
             _color = color;
         }
     }
 
     private enum CardsRank {
-        TWO(0,"2"),
-        THREE(1,"3"),
-        FOUR(2,"4"),
-        FIVE(3,"5"),
-        SIX(4,"6"),
-        SEVEN(5,"7"),
-        EIGHT(6,"8"),
-        NINE(7,"9"),
-        TEN(8,"10"),
-        JACK(9,"Jack"),
-        QUEEN(10,"Queen"),
-        KING(11,"King"),
-        AS(12,"As"),
-        JOKER(13,"Joker");
+        TWO("2"),
+        THREE("3"),
+        FOUR("4"),
+        FIVE("5"),
+        SIX("6"),
+        SEVEN("7"),
+        EIGHT("8"),
+        NINE("9"),
+        TEN("10"),
+        JACK("Jack"),
+        QUEEN("Queen"),
+        KING("King"),
+        AS("As"),
+        JOKER("Joker");
 
-        private int _value;
-        private String _rank;
+        private final String _rank;
 
-        private CardsRank(int value, String rank) {
-            _value = value;
+        CardsRank(String rank) {
             _rank = rank;
         }
     }
 
     public String toString()
     {
-        return CardsRank.values()[_rank] + " of " + CardsColor.values()[_suit];
+        String result = "";
+        result = CardsRank.values()[_rank]._rank;
+
+        if (_rank != 13)
+            result += " of " + CardsColor.values()[_suit]._color;
+        return result;
     }
 }
